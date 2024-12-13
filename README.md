@@ -1,68 +1,147 @@
 # Audio Analysis and Classification Project
 
 ## Overview
+This project implements an end-to-end pipeline for analyzing and classifying audio recordings using machine learning techniques. The pipeline extracts audio features, preprocesses the data, trains various classification models, and evaluates their performance. The primary use case for this project is the classification of whale songs by year.
 
-This project focuses on analyzing and classifying audio data, specifically whale songs, using machine learning techniques. The project processes audio files to extract features, create datasets, and apply various classification algorithms to predict the year associated with each audio file.
+---
 
 ## Features
+1. **Audio Analysis**
+   - Reads audio files in `.wav` format.
+   - Computes spectrograms (STFT and Mel-spectrogram).
+   - Extracts statistical and spectral features such as MFCCs, Mel-spectrogram values, duration, and magnitudes.
 
-- **Audio Feature Extraction**: Extracts characteristics like duration, mean frequency, and Mel-frequency cepstral coefficients (MFCCs) from audio files.
-- **Data Preprocessing**: Scales features and prepares datasets for training and testing.
-- **Visualization**: Generates spectrograms, correlation matrices, and validation curves to analyze data and model performance.
-- **Machine Learning Models**: Implements and compares multiple classification algorithms, including:
-  - Gaussian Naive Bayes
-  - Logistic Regression
-  - Decision Trees
-  - Random Forests
-  - K-Nearest Neighbors
-- **Prediction and Evaluation**: Predicts outcomes for test datasets and evaluates model accuracy.
+2. **Data Preprocessing**
+   - Extracts features from multiple audio files.
+   - Standardizes data using Min-Max scaling.
+   - Saves processed datasets for reuse.
 
-## Data
+3. **Machine Learning Models**
+   - Implements classification algorithms:
+     - Gaussian Naive Bayes
+     - Logistic Regression
+     - Decision Trees
+     - Random Forest
+     - K-Nearest Neighbors
+   - Evaluates models with accuracy and confusion matrices.
+   - Uses validation curves to tune hyperparameters for Random Forest and K-Nearest Neighbors.
 
-The audio data used in this project was collected by a researcher working in Bahía Solano. These are private files intended for research purposes, and therefore, the original audio files are not shared.
+4. **Predictions**
+   - Makes predictions on unseen data.
+   - Exports prediction results to a CSV file.
 
-The extracted features and processed datasets, however, are stored in CSV files (`audio_features_with_year.csv` and `audio_features_scaled.csv`) and are used throughout the analysis.
+---
+
+## Setup
+
+### Prerequisites
+Make sure the following libraries are installed:
+- Python 3.8+
+- `numpy`
+- `pandas`
+- `matplotlib`
+- `seaborn`
+- `librosa`
+- `scikit-learn`
+- `soundfile`
+
+Install the dependencies via pip:
+```bash
+pip install numpy pandas matplotlib seaborn librosa scikit-learn soundfile
+```
+
+### File Structure
+The project expects the following directory structure:
+```
+project-folder/
+|-- Data/                    # Folder containing `.wav` audio files
+|-- audio_features_with_year.csv  # Extracted audio features (auto-generated)
+|-- audio_features_scaled.csv     # Scaled dataset (auto-generated)
+|-- audios_predicciones.csv       # New audio data for predictions
+|-- script.py                 # Main script (this code)
+```
+
+---
 
 ## Usage
 
-1. **Dependencies**:
-   Ensure the following libraries are installed:
+### 1. Extract Audio Features
+- Place your `.wav` audio files in the `Data/` folder.
+- Run the script to extract features from the audio files.
+- The extracted features are saved to `audio_features_with_year.csv`.
 
-   - `matplotlib`
-   - `numpy`
-   - `seaborn`
-   - `pandas`
-   - `librosa`
-   - `scikit-learn`
-   - `soundfile`
+### 2. Preprocess Data
+- The script standardizes the features and saves the scaled data to `audio_features_scaled.csv`.
 
-   Install them using pip if necessary:
+### 3. Train and Evaluate Models
+- The script trains five classifiers and evaluates their accuracy.
+- Accuracy and confusion matrices for each model are displayed.
 
-   ```bash
-   pip install matplotlib numpy seaborn pandas librosa scikit-learn soundfile
-   ```
+### 4. Make Predictions
+- Place a file named `audios_predicciones.csv` in the project folder containing new audio features.
+- Run the script to generate predictions. Results are saved in `predicciones_con_features.csv`.
 
-2. **Structure**:
+---
 
-   - Place all audio files in a directory named `Data`.
-   - Ensure the filenames contain the year of recording (e.g., `Canto1_2019.WAV`).
+## Key Functions
+- **Feature Extraction:** Processes audio files and extracts features including duration, magnitudes, MFCCs, and Mel-spectrogram values.
+- **Scaling:** Normalizes features between 0 and 1 for machine learning.
+- **Classification:** Uses scikit-learn models to predict the year of the audio file.
+- **Visualization:** Generates plots for spectrograms, correlation matrices, and validation curves.
 
-3. **Running the Code**:
+---
 
-   - Execute the Python script or Jupyter Notebook to process audio files and generate datasets.
-   - Use the extracted datasets to train and evaluate the classification models.
+## Outputs
+1. **Datasets**:
+   - `audio_features_with_year.csv`: Raw features extracted from the audio files.
+   - `audio_features_scaled.csv`: Scaled features ready for machine learning.
 
-4. **Output**:
+2. **Plots**:
+   - Spectrograms (STFT and Mel-spectrogram).
+   - Correlation matrix heatmap.
+   - Validation curves for hyperparameter tuning.
 
-   - Feature datasets are saved as CSV files for further analysis.
-   - Model predictions and accuracy scores are displayed and visualized.
+3. **Prediction Results**:
+   - `predicciones_con_features.csv`: Predictions for unseen data.
 
-## Results
+---
 
-The project includes:
+## Example
 
-- Comparative performance metrics for various classification models.
-- Visualizations like spectrograms and correlation matrices to understand data and model behavior.
+### Run the Script
+```bash
+python script.py
+```
+
+### Output Example
+```
+Largo del array: 12345678
+Frecuencia de muestreo: 44100
+Duración: 280.5 segundos
+Dataset generado con éxito. Guardado en 'audio_features_with_year.csv'.
+Los datos han sido escalados y guardados en 'audio_features_scaled.csv'.
+The accuracy of RandomForestClassifier is 0.9124
+Resultados exportados a 'predicciones_con_features.csv'.
+```
+
+---
+
+## Notes
+- Ensure audio files have consistent naming conventions, as the script extracts the year from filenames using regex (e.g., `Canto1_2019.WAV`).
+- Adjust hyperparameters (e.g., `n_estimators` for Random Forest) as needed to optimize performance.
+- Use the correlation matrix to identify highly correlated features and improve feature selection.
+
+---
+
+## License
+This project is licensed under the MIT License.
+
+---
+
+## Contact
+For questions or feedback, contact [Your Name/Email].
+
+
 
 ## Future Work
 
