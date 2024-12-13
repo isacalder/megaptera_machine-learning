@@ -104,40 +104,6 @@ project-folder/
 3. **Prediction Results**:
    - `predicciones_con_features.csv`: Predictions for unseen data.
 
----
-
-## Example
-
-### Run the Script
-```bash
-python script.py
-```
-
-### Output Example
-```
-Largo del array: 12345678
-Frecuencia de muestreo: 44100
-Duración: 280.5 segundos
-Dataset generado con éxito. Guardado en 'audio_features_with_year.csv'.
-Los datos han sido escalados y guardados en 'audio_features_scaled.csv'.
-The accuracy of RandomForestClassifier is 0.9124
-Resultados exportados a 'predicciones_con_features.csv'.
-```
-
----
-
-## Notes
-- Ensure audio files have consistent naming conventions, as the script extracts the year from filenames using regex (e.g., `Canto1_2019.WAV`).
-- Adjust hyperparameters (e.g., `n_estimators` for Random Forest) as needed to optimize performance.
-- Use the correlation matrix to identify highly correlated features and improve feature selection.
-
----
-
-## License
-This project is licensed under the MIT License.
-
----
-
 ## Contact
 For questions or feedback, contact (https://www.linkedin.com/in/isabel-calderon-8a155a20b/).
 
