@@ -139,7 +139,7 @@ This project is licensed under the MIT License.
 ---
 
 ## Contact
-For questions or feedback, contact [Your Name/Email].
+For questions or feedback, contact (https://www.linkedin.com/in/isabel-calderon-8a155a20b/).
 
 
 
